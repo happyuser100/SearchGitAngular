@@ -1,0 +1,58 @@
+<div class="emptyQ"></div>
+<div class="container">
+
+  <h4>Repository</h4>
+
+  <form [formGroup]="form" novalidate (ngSubmit)="getGitRepository(repo.value)">
+
+    <div class="form-group row">
+      <label for="repo" class="col-md-3 col-form-label">Please enter repository:</label>
+      <div class="col-md-7">
+        <input class="form-control" type="text" value="" #repo id="repo">
+        <!--{{form.controls.repo.valid}}
+        <div *ngIf="form.controls.repo.touched && !form.controls.repo.valid" class="alert alert-danger">
+                 Repository name required.
+        </div>-->
+
+      </div>
+
+      <div class="col-md-1">
+        <button type="button" class="btn btn-primary" type="submit">Search</button>
+      </div>
+
+      <div class="col-md-1">
+        <button type="button" class="btn btn-primary" (click)="getBookmarks()">Bookmarks</button>
+      </div>
+    </div>
+
+  </form>
+
+<!--   <div class="row">
+      <div class="col-md-12">
+           <bookmarksgit [bookmarks] = "bookmarks"></bookmarksgit>
+      </div>
+  </div>             
+ -->
+
+  <div class="row">
+    <div class="col-md-6 box" *ngFor="let item of repos; let i = index">
+      
+      <div class="row">
+        <div class="col-md-8">
+             <span>{{item.name}}</span> 
+        </div>        
+        <div class="col-md-4">
+             <button type="button" class="btn btn-primary" (click)="setBookmark(item.name)">Set Bookmark</button>
+        </div>
+      </div> 
+       
+      <div class="row">
+         <div class="col-md-12">
+             <img src="{{item.owner.avatar_url}}" alt="" />             
+         </div>    
+      </div>
+
+    </div>  
+  </div>
+
+</div>
